@@ -51,15 +51,59 @@
 
             <!-- input tag -->
             <input id="search-bar" onkeyup="search_bar()" type="text"
-            name="search" placeholder="Search towns..">
+            name="search" placeholder="Search towns.." style="display: none;">
         
             <!-- search list -->
-            <ul id='search-list'></ul>
+            <ul id='search-list' style="display: none;"></ul>
 
-            <div id="map"></div>
+            <div class="row">
+                <div class="col">
+                    <div id="map"></div>
+                </div>
+                <div class="col">
+                    <div id="switch-parent">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="show-roads" onchange="switchChanged()" checked>
+                            <label class="form-check-label" for="show-roads">Show roads</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="show-road-labels" onchange="switchChanged()">
+                            <label class="form-check-label" for="show-road-labels">Show road labels</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="show-labels" onchange="switchChanged()">
+                            <label class="form-check-label" for="show-labels">Show labels</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <!-- Google Maps -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUb8ha9pqPsqU2wUxHneGMHt3Ne774e-g&callback=initMap&libraries=&v=weekly" async></script>
+        
+        <!-- Firebase -->
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyCUb8ha9pqPsqU2wUxHneGMHt3Ne774e-g",
+              authDomain: "map-project-340905.firebaseapp.com",
+              projectId: "map-project-340905",
+              storageBucket: "map-project-340905.appspot.com",
+              messagingSenderId: "796916181236",
+              appId: "1:796916181236:web:cd2ea174b71e07b54016a1",
+              measurementId: "G-NG3MZ5ZMCB"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+          </script>
     </body>
 </html>

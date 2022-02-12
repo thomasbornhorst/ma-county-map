@@ -26,6 +26,6 @@ body {
 #map {
     height: 700px;
     /* The height is 400 pixels */
-    width: 60%;
+    width: 100%;
     /* The width is the width of the web page */
 }

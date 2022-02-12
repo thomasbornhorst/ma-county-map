@@ -5,6 +5,8 @@ import java.io.IOException;
 public class Names2 {
 
 	public static void main(String[] args) {
+        boolean first = true;
+
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader("./municipalities_raw.txt"));
@@ -16,7 +18,11 @@ public class Names2 {
                     if(line.indexOf("Boston")>0 || line.indexOf("Nantucket")>0){
                         l2 = line.substring(l1+2).indexOf("]]") + l1 + 2;
                     }
-                    System.out.print("\"" + line.substring(l1+2, l2) + "\", ");
+                    if(first)
+                        first = false;
+                    else
+                        System.out.print(", ");
+                    System.out.print("\"" + line.substring(l1+2, l2) + "\"");
                 }
 				line = reader.readLine();
 			}

@@ -15,6 +15,10 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 
+        <!-- colorArray script -->
+        <script src="colors.js"></script>
+        <!-- GeoJson script -->
+        <script src="townsPoly.js"></script>
         <!-- Main script -->
         <script src="main.js"></script>
     </head>
@@ -41,20 +45,13 @@
             </div>
         </nav>
 
-        Hello
-
         <!-- Main bootstrap header -->
         <header class="page-header header container-fluid">
-            <!-- Mapbox map div -->
-            <div id='map' style='width: 400px; height: 300px;'></div>
-            <!-- Mapbox main map script -->
-            <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzYm9ybmhvcnN0IiwiYSI6ImNremlwc2E5ejRhenYydnA0aGNyOW02dzAifQ.H01dEWIJCQl75RhkdJXGYA';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11'
-            });
-            </script>
+            Hello
+            <div id="map"></div>
         </header>
+
+        <!-- Google Maps -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUb8ha9pqPsqU2wUxHneGMHt3Ne774e-g&callback=initMap&libraries=&v=weekly" async></script>
     </body>
 </html>

@@ -21,3 +21,11 @@ body {
 .navbar-collapse {
     justify-content: flex-end;
 }
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 700px;
+    /* The height is 400 pixels */
+    width: 60%;
+    /* The width is the width of the web page */
+}

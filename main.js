@@ -45,8 +45,23 @@ function initMap() {
     jsonFeat = map.data.addGeoJson(data); //From towns.js script
 
     jsonFeat.forEach(element => {
-        element.setProperty("TOWN", formatFeatString(element.h.TOWN));
-        if(element.getGeometry().getType());
+        var newName = formatFeatString(element.h.TOWN);
+        element.setProperty("TOWN", newName);
+
+        var newListItem = document.createElement('li');
+        newListItem.innerHTML = newName;
+        var searchList = document.getElementById("search-list")
+        var elementList = searchList.getElementsByTagName("li");
+        if(elementList.length==0 || newName > elementList[elementList.length-1].innerHTML){
+            searchList.appendChild(newListItem);
+        } else{
+            for(var i of elementList){
+                if(newName<i.innerHTML){
+                    searchList.insertBefore(newListItem, i);
+                    break;
+                }
+            }
+        }
     });
 
     var colorArray = ['red', 'green', 'blue', 'grey'];
@@ -60,11 +75,10 @@ function initMap() {
         };
     });
 
-    var infoWindow = new google.maps.InfoWindow();
-
     map.data.addListener("mouseover", (event) => {
         map.data.overrideStyle(event.feature, {fillOpacity: 0.5});
-        console.log("hover, " + event.feature.getProperty("TOWN"));
+        document.getElementById("info-box").textContent =
+      event.feature.getProperty("TOWN");
     });
 
     map.data.addListener("mouseout", (event) => {
@@ -74,17 +88,30 @@ function initMap() {
     map.data.addListener("click", (event) => {
         var bounds = new google.maps.LatLngBounds();
         map.data.overrideStyle(event.feature, {fillOpacity: 0.75});
-        console.log("click, " + event.feature.getProperty("TOWN"));
+        document.getElementById("info-box").textContent =
+      event.feature.getProperty("TOWN");
         event.feature.getGeometry().forEachLatLng(latLng => bounds.extend(latLng));
         map.fitBounds(bounds, -5);
     });
 
-    // The marker, positioned at Uluru
-    // const marker = new google.maps.Marker({
-    //   position: startPos,
-    //   map: map,
-    // });
   }
+
+  //search bar
+function search_bar() {
+    let input = document.getElementById('search-bar').value
+    input=input.toLowerCase();
+    var searchList = document.getElementById("search-list")
+    var elementList = searchList.getElementsByTagName("li");
+        
+    for (var i of elementList) { 
+        if (!i.innerHTML.toLowerCase().includes(input)) {
+            i.style.display="none";
+        }
+        else {
+            i.style.display="list-item";                 
+        }
+    }
+}
 
   function formatFeatString (string) {
     string = string.toLowerCase();

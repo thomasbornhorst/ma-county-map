@@ -47,7 +47,15 @@
 
         <!-- Main bootstrap header -->
         <header class="page-header header container-fluid">
-            Hello
+            <div id="info-box">Town</div>
+
+            <!-- input tag -->
+            <input id="search-bar" onkeyup="search_bar()" type="text"
+            name="search" placeholder="Search towns..">
+        
+            <!-- search list -->
+            <ul id='search-list'></ul>
+
             <div id="map"></div>
         </header>
 

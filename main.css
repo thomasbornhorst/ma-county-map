@@ -22,6 +22,10 @@ body {
     justify-content: flex-end;
 }
 
+h2{
+    display: inline;
+}
+
 /* Set the size of the div element that contains the map */
 #map {
     height: 700px;

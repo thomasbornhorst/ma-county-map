@@ -15,10 +15,17 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 
-        <!-- colorArray script -->
-        <script src="colors.js"></script>
         <!-- GeoJson script -->
         <script src="townsPoly.js"></script>
+
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+        <!-- Font Awesome (for icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <!-- Main script -->
         <script src="main.js"></script>
     </head>
@@ -61,49 +68,36 @@
                     <div id="map"></div>
                 </div>
                 <div class="col">
-                    <div id="switch-parent">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="show-roads" onchange="switchChanged()" checked>
-                            <label class="form-check-label" for="show-roads">Show roads</label>
+                    <div class="row">
+                        <div id="switch-parent">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="show-roads" onchange="switchChanged()" checked>
+                                <label class="form-check-label" for="show-roads">Show roads</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="show-road-labels" onchange="switchChanged()">
+                                <label class="form-check-label" for="show-road-labels">Show road labels</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="show-labels" onchange="switchChanged()">
+                                <label class="form-check-label" for="show-labels">Show labels</label>
+                            </div>
                         </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="show-road-labels" onchange="switchChanged()">
-                            <label class="form-check-label" for="show-road-labels">Show road labels</label>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div style="clear: both;">
+                            <h2 style="text-decoration: underline;">Information</h2>
+                            <h2> - </h2>
+                            <h2 id="town-header">Town</h2>
                         </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="show-labels" onchange="switchChanged()">
-                            <label class="form-check-label" for="show-labels">Show labels</label>
-                        </div>
+                        <p>Hello</p>
                     </div>
                 </div>
             </div>
         </header>
-
+        
         <!-- Google Maps -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUb8ha9pqPsqU2wUxHneGMHt3Ne774e-g&callback=initMap&libraries=&v=weekly" async></script>
-        
-        <!-- Firebase -->
-        <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.6/firebase-analytics.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-          
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-              apiKey: "AIzaSyCUb8ha9pqPsqU2wUxHneGMHt3Ne774e-g",
-              authDomain: "map-project-340905.firebaseapp.com",
-              projectId: "map-project-340905",
-              storageBucket: "map-project-340905.appspot.com",
-              messagingSenderId: "796916181236",
-              appId: "1:796916181236:web:cd2ea174b71e07b54016a1",
-              measurementId: "G-NG3MZ5ZMCB"
-            };
-          
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-          </script>
     </body>
 </html>

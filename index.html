@@ -28,6 +28,8 @@
 
         <!-- Main script -->
         <script src="main.js"></script>
+
+        <base target="_blank">
     </head>
 
     <body>
@@ -79,27 +81,30 @@
                         <p id = "town-info-none">Click on town to see information</p>
                         <div id = "town-info-parent" style="display: none;">
                             <div id = "town-info">
-                                Info: 1
-                                <table rules="all">
-                                    <tr>
-                                      <th>Company</th>
-                                      <th>Contact</th>
-                                      <th>Country</th>
-                                    </tr>
-                                    <tr>
-                                      <td>Alfreds Futterkiste</td>
-                                      <td>Maria Anders</td>
-                                      <td>Germany</td>
-                                    </tr>
-                                    <tr>
-                                      <td>Centro comercial Moctezuma</td>
-                                      <td>Francisco Chang</td>
-                                      <td>Mexico</td>
-                                    </tr>
-                                  </table>
+                                <table class="table table-striped" id="town-info-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Link</th>
+                                        <tr>
+                                    </thead>
+                                    <tbody id="town-info-tbody">
+                                        <tr>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>N/A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td><a href="https://www.google.com">Link</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <div style="font-size: x-large;">Additional Links</div>
-                            <a href="https://www.google.com" target="_blank" id="addt-link">Google</a>
+                            <a href="https://www.google.com" id="addt-link">Google</a>
                         </div>
                     </div>
                 </div>

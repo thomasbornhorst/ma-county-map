@@ -33,28 +33,15 @@
     <body>
         <!-- Nav Bar -->
         <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="#"><img src="./images/cdp_logo.jpeg" height="45"></a>
+            <a class="navbar-brand" href="#"><img src="./images/cdp_logo.jpeg" height="35" style="padding-left: 10px;"></a>
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
         </nav>
 
         <!-- Main bootstrap header -->
         <header class="page-header header container-fluid">
-            <div id="info-box">Town</div>
+            <!-- <div id="info-box">Town</div> -->
 
             <!-- input tag -->
             <input id="search-bar" onkeyup="search_bar()" type="text"
@@ -87,11 +74,33 @@
                     <hr/>
                     <div class="row">
                         <div style="clear: both;">
-                            <!-- <h2 style="text-decoration: underline;">Information</h2> -->
-                            <!-- <h2> - </h2> -->
                             <h2 id="town-header">Town</h2>
                         </div>
-                        <p>Hello</p>
+                        <p id = "town-info-none">Click on town to see information</p>
+                        <div id = "town-info-parent" style="display: none;">
+                            <div id = "town-info">
+                                Info: 1
+                                <table rules="all">
+                                    <tr>
+                                      <th>Company</th>
+                                      <th>Contact</th>
+                                      <th>Country</th>
+                                    </tr>
+                                    <tr>
+                                      <td>Alfreds Futterkiste</td>
+                                      <td>Maria Anders</td>
+                                      <td>Germany</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Centro comercial Moctezuma</td>
+                                      <td>Francisco Chang</td>
+                                      <td>Mexico</td>
+                                    </tr>
+                                  </table>
+                            </div>
+                            <div style="font-size: x-large;">Additional Links</div>
+                            <a href="https://www.google.com" target="_blank" id="addt-link">Google</a>
+                        </div>
                     </div>
                 </div>
             </div>

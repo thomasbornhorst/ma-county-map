@@ -26,6 +26,14 @@ h2{
     display: inline;
 }
 
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding-right: 10px;
+}
+
 /* Set the size of the div element that contains the map */
 #map {
     height: 700px;

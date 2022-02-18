@@ -4,11 +4,12 @@ var mapLoaded = false;
 let jsonFeat;
 
 const startPos = { lat: 42.318870, lng: -71.588521 };
-const initOpacity = 0.05;
+const initOpacity = 0.1;
 const hoverOpacity = 0.15;
 const clickOpacity = 0.45;
+const minZoom = 8;
+const defaultZoom = 9;
 
-var isClicked = false;
 var townSelected = null;
 var townList = [];
 
@@ -54,10 +55,9 @@ async function getFirebaseData() {
 
 function createMap() {
     // Creating the map
-    var defaultZoom = 9;
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: defaultZoom,
-        minZoom: 8,
+        minZoom: minZoom,
         restriction: {
             latLngBounds: {
                 north: 43.72438437915228,
@@ -142,43 +142,45 @@ function configTownSearchBar(newName) {
 
 function addDataListeners() {
     map.data.addListener("mouseover", (event) => {
-        if(isClicked)
+        if(townSelected!=null && townSelected.id==event.feature.getProperty("TOWN")) {
             return;
+        }
         map.data.overrideStyle(event.feature, { fillOpacity: hoverOpacity });
+        if(townSelected!=null)
+            return;
         updateSelectedTown(event);
     });
 
     map.data.addListener("mouseout", (event) => {
+        if(townSelected!=null && townSelected.id==event.feature.getProperty("TOWN")) {
+            map.data.overrideStyle(event.feature, {fillOpacity: 0});
+        }
         map.data.revertStyle();
     });
 
     map.data.addListener("click", (event) => {
-        var townName = event.feature.getProperty("TOWN");
-        var townFound = false;
-
-        isClicked = true;
-        var bounds = new google.maps.LatLngBounds();
         map.data.overrideStyle(event.feature, { fillOpacity: clickOpacity});
+
         updateSelectedTown(event);
+
+        var bounds = new google.maps.LatLngBounds();
         event.feature.getGeometry().forEachLatLng(latLng => bounds.extend(latLng));
-        map.fitBounds(bounds, 0);
+        map.setOptions({minZoom: 0});
+        var ctr = bounds.getCenter();
+        map.fitBounds(bounds);
+        map.fitBounds(bounds);
+        map.setOptions({minZoom: minZoom});
 
-        //This way of looking for the right town is a little scuffed / not optimal but it works
-        townList.forEach(function(townObject){
-            if(townObject.id==townName){
-                townFound = true;
-                setTownInfoData(townObject);
-            }
-        })
-
-        if(!townFound){
+        console.log(townSelected);
+        if(townSelected!=null){
+            setTownInfoData(townSelected);
+        }else{
             hideTownInfo();
         }
     });
 }
 
 function setTownInfoData(townObject) {
-    console.log(townObject.id);
     var townInfoParent = document.getElementById("town-info-parent");
     document.getElementById("town-info-none").style.display = "none";
     townInfoParent.style.display = "block";
@@ -190,8 +192,16 @@ function hideTownInfo() {
 }
 
 function updateSelectedTown(event) {
-    
+    townSelected = null;
     var townName = event.feature.getProperty("TOWN");
+
+    //This way of looking for the right town is a little scuffed / not optimal but it works
+    townList.forEach(function(townObject){
+        if(townObject.id==townName){
+            townSelected = townObject;
+        }
+    })
+    
     // document.getElementById("info-box").textContent = townName;
     document.getElementById("town-header").textContent = townName;
 }
@@ -220,8 +230,8 @@ function addHomeControl(controlDiv, map) {
     controlUI.appendChild(controlIcon);
 
     controlUI.addEventListener("click", () => {
-        isClicked = false;
-        map.setZoom(9);
+        townSelected = null;
+        map.setZoom(defaultZoom);
         map.setCenter(startPos);
         hideTownInfo();
     });

@@ -1,4 +1,4 @@
-# cdp-map: Massachusetts County Exploration System
+# ma-county-map: Massachusetts County Exploration System
 
 ## Overview
 
